@@ -1,0 +1,19 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build -t docker.pkg.github.com/${{ github.repository }}/${IMAGE_NAME}:${IMAGE_TAG} --file Dockerfile .
+    - name: Login
+      run: docker login docker.pkg.github.com -u kkdm -p ${{ secrets.GITHUB_TOKEN }}
+    - name: push
+      run: docker push docker.pkg.github.com/${{ github.repository }}/${IMAGE_NAME}:${IMAGE_TAG} 
