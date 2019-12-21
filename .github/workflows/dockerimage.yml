@@ -4,7 +4,7 @@ on: [push]
 
 env:
   DOCKER_BUILDKIT: 1
-  IMAGE_NAME: slack-notify
+  IMAGE_NAME: telegram-notify
   IMAGE_TAG: v0.1.0
 
 jobs:
